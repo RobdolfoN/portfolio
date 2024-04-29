@@ -1,0 +1,8 @@
+{
+    "scripts": {
+      "dev": "tailwindcss -i portfolioapp/static/tw/tailwind-input.css -o portfolioapp/static/css/output.css --watch"
+    },
+    "devDependencies": {
+      "tailwindcss": "^3.2.4"
+    }
+  }

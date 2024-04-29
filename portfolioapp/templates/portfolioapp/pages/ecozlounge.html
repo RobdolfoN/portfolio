@@ -1,0 +1,985 @@
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="relative text-gray-800 bg-gray-50">
+
+
+<section class="py-10 md:py-16">
+    
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="text-left">
+            <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">
+                ECO ZLOUNGE FOR SAFRAN</h6>
+            <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                The Eco Zlounge, finalist for the Crystal Cabin Award 2018 in the category of "Passenger Comfort Hardware" 
+                is an innovative concept that directly enhances the passenger comfort while providing airlines with new revenue 
+                streams.
+                It is a flexible system that enables Economy Class passengers to make use of an empty seat in front of them to stretch
+                 their legs onto the seat surface in front. This concept effectively transforms an economy class seat into a home-like lounge sofa. 
+                
+                </p>
+        </div>
+
+        <div class="text-left mb-8">
+            <h2 class="font-medium text-gray-600 text-sm md:text-lg uppercase mb-2 ">Responsibilities:</h2>
+            <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg">
+              <ul>
+                <li>- Project management</li>
+                <li>- Ideation and concept development</li>
+                <li>- Mechanical design</li>
+            </ul>
+              
+              </p>
+        </div>
+    </div>
+
+    <div
+    id="carouselExampleCaptions"
+    class="relative mb-16"
+    data-te-carousel-init
+    data-te-ride="carousel">
+    <!--Carousel indicators-->
+    <div
+      class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+      data-te-carousel-indicators>
+      <button
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide-to="0"
+        data-te-carousel-active
+        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+        aria-current="true"
+        aria-label="Slide 1"></button>
+      <button
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide-to="1"
+        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+        aria-label="Slide 2"></button>
+      <button
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide-to="2"
+        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+        aria-label="Slide 3"></button>
+    </div>
+  
+    <!--Carousel items-->
+    <div
+      class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+      <!--First item-->
+      <div
+        class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+        data-te-carousel-active
+        data-te-carousel-item
+        style="backface-visibility: hidden">
+        <img
+          src="{% static 'images/Eco Zlounge - 1.jpg' %}"
+          class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+          alt="..." />
+        <div
+          class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+          <h5 class="text-xl"></h5>
+          <p></p>
+        </div>
+      </div>
+      <!--Second item-->
+      <div
+        class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+        data-te-carousel-item
+        style="backface-visibility: hidden">
+        <img
+          src="{% static 'images/Eco Zlounge - 2.jpg' %}"
+          class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+          alt="..." />
+        <div
+          class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+          <h5 class="text-xl"></h5>
+          <p></p>
+        </div>
+      </div>
+      <!--Third item-->
+      <div
+        class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+        data-te-carousel-item
+        style="backface-visibility: hidden">
+        <img
+          src="{% static 'images/Eco Zlounge - 3.jpg' %}"
+          class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+          alt="..." />
+        <div
+          class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+          <h5 class="text-xl"></h5>
+          <p></p>
+        </div>
+      </div>
+          <!--Fourth item-->
+          <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/Eco Zlounge - 4.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Fifth item-->
+        <div
+        class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+        data-te-carousel-item
+        style="backface-visibility: hidden">
+        <img
+          src="{% static 'images/Eco Zlounge - 5.jpg' %}"
+          class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+          alt="..." />
+        <div
+          class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+          <h5 class="text-xl"></h5>
+          <p></p>
+        </div>
+      </div>
+  
+    </div>
+  
+  
+  <!--Carousel controls - prev item-->
+  <button
+    class="absolute bottom-1/2 left-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+    type="button"
+    data-te-target="#carouselExampleCaptions"
+    data-te-slide="prev"
+    style="transform: translate(0, 50%); width: 3rem; height: 3rem;"> <!-- Adjust width and height as needed -->
+    <span class="svg-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="h-6 w-6">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </span>
+    <span class="sr-only">Previous</span>
+  </button>
+  
+  
+  
+  
+    <!--Carousel controls - next item-->
+    <button
+      class="absolute bottom-1/2 right-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+      type="button"
+      data-te-target="#carouselExampleCaptions"
+      data-te-slide="next"
+      style="transform: translate(0, 50%); width: 3rem; height: 3rem;">
+      <span class="svg-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      <span
+        class="sr-only"
+        >Next</span
+      >
+    </button>
+  </div>
+
+
+
+</section>
+
+
+
+
+
+<hr class="border-gray-400 mx-44 mb-12" />
+
+
+<section class="py-10 md:py-16">
+    
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="text-left">
+            <h2 class="font-medium text-gray-600 text-lg md:text-xl uppercase mb-8">
+                Project Development Phases:</h2>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+    <!-- Column 1: Carousel 1 -->
+    <div id="carousel1" class="relative" data-te-carousel-init data-te-ride="carousel">
+        <h3 class="text-center text-lg font-semibold mb-4">Phase 1: Research</h3>
+      <!--... Carousel 1 content ...-->
+      <div
+      id="carouselExampleCaptions"
+      class="relative mb-16"
+      data-te-carousel-init
+      data-te-ride="carousel">
+      <!--Carousel indicators-->
+      <div
+        class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+        data-te-carousel-indicators>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="0"
+          data-te-carousel-active
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-current="true"
+          aria-label="Slide 1"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="1"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 2"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="2"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 3"></button>
+      </div>
+    
+      <!--Carousel items-->
+      <div
+        class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+        <!--First item-->
+        <div
+          class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-active
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/research 1.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Second item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/research 2.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Third item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/research 3.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+            <!--Fourth item-->
+            <div
+            class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+            style="backface-visibility: hidden">
+            <img
+              src="{% static 'images/research 4.jpg' %}"
+              class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+              alt="..." />
+            <div
+              class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+              <h5 class="text-xl"></h5>
+              <p></p>
+            </div>
+          </div>
+          <!--Fifth item-->
+          <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/research 5.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+                  <!--Sixth item-->
+                  <div
+                  class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                  data-te-carousel-item
+                  style="backface-visibility: hidden">
+                  <img
+                    src="{% static 'images/research 6.jpg' %}"
+                    class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+                    alt="..." />
+                  <div
+                    class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+                    <h5 class="text-xl"></h5>
+                    <p></p>
+                  </div>
+                </div>
+          <!--Seventh item-->
+          <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/research 7.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        
+    
+      </div>
+    
+    
+    <!--Carousel controls - prev item-->
+    <button
+      class="absolute bottom-1/2 left-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+      type="button"
+      data-te-target="#carouselExampleCaptions"
+      data-te-slide="prev"
+      style="transform: translate(0, 50%); width: 3rem; height: 3rem;"> <!-- Adjust width and height as needed -->
+      <span class="svg-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </span>
+      <span class="sr-only">Previous</span>
+    </button>
+    
+    
+    
+    
+      <!--Carousel controls - next item-->
+      <button
+        class="absolute bottom-1/2 right-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide="next"
+        style="transform: translate(0, 50%); width: 3rem; height: 3rem;">
+        <span class="svg-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </span>
+        <span
+          class="sr-only"
+          >Next</span
+        >
+      </button>
+    </div>
+
+    <!-- Caption -->
+  <div class="text-center p-4">
+    <p class="text-sm md:text-base text-gray-600">The initial stage of the project was research and ideation. 
+        "Users" were recruited to participate in this stage. 
+        User research was conducted using low-resolution mock-ups</p>
+  </div>
+    
+
+    </div>
+  
+    <!-- Column 2: Carousel 2 -->
+    <div id="carousel2" class="relative" data-te-carousel-init data-te-ride="carousel">
+        <h3 class="text-center text-lg font-semibold mb-4">Phase 2: Design</h3>
+      <!--... Carousel 2 content ...-->
+      <div
+      id="carouselExampleCaptions"
+      class="relative mb-16"
+      data-te-carousel-init
+      data-te-ride="carousel">
+      <!--Carousel indicators-->
+      <div
+        class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+        data-te-carousel-indicators>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="0"
+          data-te-carousel-active
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-current="true"
+          aria-label="Slide 1"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="1"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 2"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="2"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 3"></button>
+      </div>
+    
+      <!--Carousel items-->
+      <div
+        class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+        <!--First item-->
+        <div
+          class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-active
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/design 1.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Second item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/design 2.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Third item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/design 3.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+            <!--Fourth item-->
+            <div
+            class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+            style="backface-visibility: hidden">
+            <img
+              src="{% static 'images/design 4.jpg' %}"
+              class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+              alt="..." />
+            <div
+              class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+              <h5 class="text-xl"></h5>
+              <p></p>
+            </div>
+          </div>
+          <!--Fifth item-->
+          <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/design 5.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+                  <!--Sixth item-->
+                  <div
+                  class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                  data-te-carousel-item
+                  style="backface-visibility: hidden">
+                  <img
+                    src="{% static 'images/design 6.jpg' %}"
+                    class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+                    alt="..." />
+                  <div
+                    class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+                    <h5 class="text-xl"></h5>
+                    <p></p>
+                  </div>
+                </div>
+        
+    
+      </div>
+    
+    
+    <!--Carousel controls - prev item-->
+    <button
+      class="absolute bottom-1/2 left-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+      type="button"
+      data-te-target="#carouselExampleCaptions"
+      data-te-slide="prev"
+      style="transform: translate(0, 50%); width: 3rem; height: 3rem;"> <!-- Adjust width and height as needed -->
+      <span class="svg-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </span>
+      <span class="sr-only">Previous</span>
+    </button>
+    
+    
+    
+    
+      <!--Carousel controls - next item-->
+      <button
+        class="absolute bottom-1/2 right-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide="next"
+        style="transform: translate(0, 50%); width: 3rem; height: 3rem;">
+        <span class="svg-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </span>
+        <span
+          class="sr-only"
+          >Next</span
+        >
+      </button>
+    </div>
+
+    <!-- Caption -->
+  <div class="text-center p-4">
+    <p class="text-sm md:text-base text-gray-600">During this phase, the final concept was selected and refined. 
+        Most of the mechanical design took place at this stage. 
+        Parts, sub-assemblies, and assemblies were defined; 
+        drawings and a list of materials were created; 
+        and assembly instructions for the proto shop were produced. </p>
+  </div>
+
+
+
+    </div>
+  
+    <!-- Column 3: Carousel 3 -->
+    <div id="carousel3" class="relative" data-te-carousel-init data-te-ride="carousel">
+        <h3 class="text-center text-lg font-semibold mb-4">Phase 3: Prototyping</h3>
+      <!--... Carousel 3 content ...-->
+
+      <div
+      id="carouselExampleCaptions"
+      class="relative mb-16"
+      data-te-carousel-init
+      data-te-ride="carousel">
+      <!--Carousel indicators-->
+      <div
+        class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+        data-te-carousel-indicators>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="0"
+          data-te-carousel-active
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-current="true"
+          aria-label="Slide 1"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="1"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 2"></button>
+        <button
+          type="button"
+          data-te-target="#carouselExampleCaptions"
+          data-te-slide-to="2"
+          class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+          aria-label="Slide 3"></button>
+      </div>
+    
+      <!--Carousel items-->
+      <div
+        class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+        <!--First item-->
+        <div
+          class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-active
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/proto 1.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Second item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/proto 2.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+        <!--Third item-->
+        <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/proto 3.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+            <!--Fourth item-->
+            <div
+            class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+            style="backface-visibility: hidden">
+            <img
+              src="{% static 'images/proto 4.jpg' %}"
+              class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+              alt="..." />
+            <div
+              class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+              <h5 class="text-xl"></h5>
+              <p></p>
+            </div>
+          </div>
+          <!--Fifth item-->
+          <div
+          class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="{% static 'images/proto 5.jpg' %}"
+            class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <h5 class="text-xl"></h5>
+            <p></p>
+          </div>
+        </div>
+
+                <!--Sixth item-->
+                <div
+                class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item
+                style="backface-visibility: hidden">
+                <img
+                  src="{% static 'images/proto 6.jpg' %}"
+                  class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+                  alt="..." />
+                <div
+                  class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+                  <h5 class="text-xl"></h5>
+                  <p></p>
+                </div>
+              </div>
+                  <!--Seventh item-->
+                  <div
+                  class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                  data-te-carousel-item
+                  style="backface-visibility: hidden">
+                  <img
+                    src="{% static 'images/proto 7.jpg' %}"
+                    class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+                    alt="..." />
+                  <div
+                    class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+                    <h5 class="text-xl"></h5>
+                    <p></p>
+                  </div>
+                </div>
+                <!--eighth item-->
+                <div
+                class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item
+                style="backface-visibility: hidden">
+                <img
+                  src="{% static 'images/proto 8.jpg' %}"
+                  class="block mx-auto w-full md:w-3/4 lg:w-2/3"
+                  alt="..." />
+                <div
+                  class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+                  <h5 class="text-xl"></h5>
+                  <p></p>
+                </div>
+              </div>
+      
+    
+      </div>
+    
+    
+    <!--Carousel controls - prev item-->
+    <button
+      class="absolute bottom-1/2 left-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+      type="button"
+      data-te-target="#carouselExampleCaptions"
+      data-te-slide="prev"
+      style="transform: translate(0, 50%); width: 3rem; height: 3rem;"> <!-- Adjust width and height as needed -->
+      <span class="svg-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </span>
+      <span class="sr-only">Previous</span>
+    </button>
+    
+    
+    
+    
+      <!--Carousel controls - next item-->
+      <button
+        class="absolute bottom-1/2 right-6 z-10 flex items-center justify-center border-0 bg-black bg-opacity-30 rounded-full p-0 text-center text-white transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:bg-opacity-50 hover:outline-none"
+        type="button"
+        data-te-target="#carouselExampleCaptions"
+        data-te-slide="next"
+        style="transform: translate(0, 50%); width: 3rem; height: 3rem;">
+        <span class="svg-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </span>
+        <span
+          class="sr-only"
+          >Next</span
+        >
+      </button>
+    </div>
+
+    <!-- Caption -->
+  <div class="text-center p-4">
+    <p class="text-sm md:text-base text-gray-600">In the final phase of the project, 
+        a high-resolution prototype was produced. Close collaboration with the Proto Shop was necessary, 
+        along with on-site "last-minute" engineering and design support. 
+        The prototype was successfully produced and shipped on time to Huntington Beach, 
+        where it was exhibited and tested by customers during the 2018 symposium.</p>
+  </div>
+
+
+    </div>
+  </div>
+
+  <hr class="border-gray-400 mx-44 mb-12" />
+  
+  <div class="container max-w-screen-xl mx-auto px-4">
+        
+
+    <div class="text-left mb-8">
+        <h2 class="font-medium text-gray-600 text-sm md:text-lg uppercase mb-2 ">Media mentions:</h2>
+        <div class="font-normal text-gray-600 text-sm md:text-md lg:text-lg">
+            <a href="https://www.youtube.com/watch?v=KCuOs_X55Cs" class="text-blue-600 hover:text-blue-800">Passenger Comfort Hardware: The finalists for the Crystal Cabin Award 2018</a><br>
+            <a href="https://apex.aero/articles/crystal-cabin-award-2018-finalists-announced/" class="text-blue-600 hover:text-blue-800">APEX</a><br>
+            <a href="https://www.yahoo.com/lifestyle/best-airplane-designs-book-today-090001789.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAJYoCYaxtUDIEP0QSQcnbEuJ7XLQ9vRLmFORBo8La78HTA5UR3ITcvqoqfOxkgik8xuJr7FuDkwia1txJeMH9lJam8skfNXIjxTaJtVMexXdNuqUWX4jswwM1JHABT3NSgwCOIikhVBm3jvBwXI5t1dz4B0_8eSRy_p-3T-M4RNt" class="text-blue-600 hover:text-blue-800">Yahoo.com</a><br>
+            <a href="https://www.cnbc.com/2018/04/01/crystal-cabin-award-finalists-feature-seats-suites-and-urinals.html" class="text-blue-600 hover:text-blue-800">CNBC</a>
+            <a href="https://runwaygirlnetwork.com/2018/03/these-24-onboard-innovations-are-the-crystal-cabin-award-finalists-2018/" class="text-blue-600 hover:text-blue-800">Runway Girl Network</a>
+            
+            <!-- Add additional links as needed -->
+        </div>
+    </div>
+
+    <div class="text-left mb-8">
+        <h2 class="font-medium text-gray-600 text-sm md:text-lg uppercase mb-2 ">Patent:</h2>
+        <div class="font-normal text-gray-600 text-sm md:text-md lg:text-lg">
+            <a href="https://patents.google.com/patent/US10688894B2/en?oq=us10688894b2" class="text-blue-600 hover:text-blue-800">Recliner sofa system for economy class seat</a><br>
+            
+            <!-- Add additional links as needed -->
+        </div>
+    </div>
+
+</div>
+
+  
+
+
+</div>
+
+
+</section>
+
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to go to a specific slide in a carousel
+    function goToSlide(carouselItems, carouselIndicators, index) {
+        carouselItems.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('data-te-carousel-active');
+                item.classList.remove('hidden');
+            } else {
+                item.classList.remove('data-te-carousel-active');
+                item.classList.add('hidden');
+            }
+        });
+
+        carouselIndicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.setAttribute('data-te-carousel-active', 'true');
+            } else {
+                indicator.removeAttribute('data-te-carousel-active');
+            }
+        });
+    }
+
+    // Setup each carousel
+    document.querySelectorAll('[data-te-carousel-init]').forEach(carousel => {
+        const indicators = carousel.querySelectorAll('[data-te-carousel-indicators] button');
+        const items = carousel.querySelectorAll('[data-te-carousel-item]');
+        
+        // Event listeners for indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                goToSlide(items, indicators, index);
+            });
+        });
+
+        // Event listeners for previous/next buttons
+        const prevButton = carousel.querySelector('[data-te-slide="prev"]');
+        const nextButton = carousel.querySelector('[data-te-slide="next"]');
+
+        prevButton.addEventListener('click', () => {
+            let activeIndex = Array.from(items).findIndex(item => item.classList.contains('data-te-carousel-active'));
+            let newIndex = activeIndex - 1;
+            if (newIndex < 0) newIndex = items.length - 1;
+            goToSlide(items, indicators, newIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            let activeIndex = Array.from(items).findIndex(item => item.classList.contains('data-te-carousel-active'));
+            let newIndex = activeIndex + 1;
+            if (newIndex >= items.length) newIndex = 0;
+            goToSlide(items, indicators, newIndex);
+        });
+    });
+});
+        
+     
+</script>
+
+{% endblock %}

@@ -1,0 +1,257 @@
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- component -->
+<div class="relative text-gray-800 bg-gray-50">
+    <!-- Navbar -->
+    <!-- / Navbar -->
+        
+       
+
+        <div class="flex justify-center mb-0">
+            <img src="{% static 'images\portfolio_photo_BW.png' %}" alt="Image" class="w-60 h-60 rounded-full mx-auto">
+        </div>
+        
+        <section class="py-10 md:py-16">
+            <div class="container  max-w-screen-xl mx-auto px-4">
+                <div class="text-center">
+                    <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">Rodolfo Nevarez Gonzalez</h6>
+                    <h1 class="font-normal text-gray-900 text-3xl md:text-5xl lg:text-7xl leading-none mb-8">Engineer</h1>
+                    
+                    <p class="font-normal text-gray-600 text-left md:text-md lg:text-xl mb-16">I am passionate about problem-solving and adept at figuring things out. 
+                        With a strong foundation in 3D modeling and physical prototyping, 
+                        I've recently focused on Advanced Analytical Web Applications. 
+                        Here, I combine my creativity and technical skills to create impactful, <br>user-centric digital solutions.
+                    </p>
+                
+                </div>
+            </div>
+        </section>
+        
+
+     
+  
+                
+
+            <hr class="border-gray-400 mx-44" />
+        <!-- Resume -->
+        <section class="px-20 mt-10">
+            <h4 class="mb-8 text-3xl font-bold text-center md:text-left">Experience</h4>
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl font-bold">Advanced Analytical Web Applications Developer</h5>
+                    <h6 class="text-lg font-bold">Waterfront Council Diversity Dashboard</h6>
+                    <p>2023</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>The Waterfront Council Diversity Dashboard, developed for the Waterfront DEI Council, 
+                        facilitates transparent and precise measurement of diversity, equity, and inclusion (DEI) 
+                        in the waterfront industry using various data visualization tools. Key tasks involved data 
+                        cleaning, organizing, establishing the logic for demographic data display, implementing user authentication,
+                         and working with professionals to meet client-specific requirements. Users can analyze and compare demographic data, including gender, minority status, and disability across the industry and within their own companies. The dashboard's primary accomplishment is providing employers with a tool to monitor and evaluate employment equity progress, meeting client needs and ensuring its active use and maintenance.
+                    </p>
+                    <br>
+                    <p>Tech Stack:</p>
+                    <ul>
+                        <li>Python and Django: Backend development, data modeling, user authentication.</li>
+                       <li>Plotly and Plotly.js: Dynamic data visualization.</li>
+                        <li>HTML and CSS: User interface design.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl  font-bold">Integration Specialist</h5>
+                    <h6 class="text-lg font-bold">CadMakers</h6>
+                    <p>2019 - 2020</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>
+                        Responsibilities:</p>
+                        <ul>
+                            <li>•	Create Structural (Mass Timber and Steel Systems) and/or Mechanical (Plumbing, HVAC and Electrical) 3D models for fabrication</li>
+                            <li> •	Virtual design and construction review of 2D drawings for all building elements (i.e. architectural, structural & mechanical) or any other 3D data file into one central 3D parametric model using CATIA</li>
+                            <li> •	Attend and support project coordination meetings, deliver live reports to clients and construction personnel for large AEC projects</li>
+                            <li> •	Manage revisions in the model that take place throughout the design and construction phases</li>
+
+                </ul>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl  font-bold">R&D Engineer III</h5>
+                    <h6 class="text-lg font-bold">Safran Seats US (Zodiac Aerospace) </h6>
+                    <p>2017 - 2019</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>Responsibilities:</p>
+                        <ul>
+                            <li>•	Project management</li>
+                            <li>•	Team lead of both Industrial Designers and Engineers</li>
+                            <li>•	Execution of new product development</li>
+                            <li>•	Co-author of R&D design guidelines and procedures for Mexico’s R&D group</li>
+                            <li>•	Co-facilitator of design thinking workshops</li>
+                            <li>•	Crystal Cabin Awards finalist with Zodiac’s Eco Zlounge</li>
+                        </ul>
+                        <br>
+                        <a href="http://www.crystal-cabin-award.com/cca-news-realeases/article/24-pioneering-on-board-innovations-for-airliners.html" target="_blank">
+                            <button class="px-5 py-2 md:px-6 md:py-2.5 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500 mb-4">Crystal Cabin Award News</button> <!-- Smaller buttons -->
+                        </a>
+                        <a href="https://www.cnbc.com/2018/04/01/crystal-cabin-award-finalists-feature-seats-suites-and-urinals.html" target="_blank">
+                            <button class="px-5 py-2 md:px-6 md:py-2.5 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500">CNBC Article</button> <!-- Smaller buttons -->
+                        </a>
+                    
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl  font-bold">Digital Innovation Engineer</h5>
+                    <h6 class="text-lg font-bold">Ford Motor Company </h6>
+                    <p>2015 – 2017</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>Responsibilities:</p>
+                        <ul>
+                            <li>•	Team member of the group in charge of promoting innovation and creative thinking among Ford employees</li>
+                            <li>•	Organizer of innovation challenges and design thinking workshops</li>
+                            <li>•	Facilitator of design thinking workshops</li>
+                            <li>•	Speaker at Ford’s Innovation Week 2016</li>
+                            <li>•	3rd place at Ford’s Global Mobility Challenge</li>
+                            <li>•	Design of rain sensor and camera covers of: Mustang 2018, Lincoln Nautilus 2018, Ford Edge 2018</li>
+                            <li>•	Responsible for integration and packaging of electronic components inside the plastic covers</li>
+                            <li>•	Design of rain sensor and camera covers of: Mustang 2018, Lincoln Nautilus 2018, Ford Edge 2018</li>
+                                            
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl  font-bold">Innovation Consultant</h5>
+                    <h6 class="text-lg font-bold">Hewlett Packard </h6>
+                    <p>2013 – 2014</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>Responsibilities:</p>
+                        <ul>
+                            <li>•	User Research (Ethnographic Observations, Photo and Video Research, User Interview, User Journey)</li>
+                            <li>•	Product/Service concept development</li>
+                            <li>•	Prototype coordination</li>
+                            <li>•	Communicate research results to customer (Hewlett Packard Design team)</li>
+                                                                        
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6 my-10">
+                <div class="flex flex-col col-span-2 mb-4 md:mb-0">
+                    <h5 class="text-xl md:text-2xl  font-bold">Design Engineer</h5>
+                    <h6 class="text-lg font-bold">Zodiac Aerospace </h6>
+                    <p>2011 – 2013</p>
+                </div>
+                <div class="flex flex-col col-span-4">
+                    <p>Responsibilities:</p>
+                        <ul>
+                            <li>•	Administration of work and technical resources</li>
+                            <li>•	3D modelling for new or existing programs</li>
+                            <li>•	Knowledge and compliance of AIRBUS and BOEING specifications for ACI & Configuration drawings</li>
+                            <li>•	Review and create drawings for manufacture </li>
+                            <li>•	Analyze manufacturing problems from the design perspective and propose solutions</li>
+                                            
+                </div>
+            </div>
+        </section>
+        <hr class="border-gray-400 mx-44" />
+
+
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 my-10"> <!-- Set up a 2-column grid -->
+        <section class="px-20 mt-10">
+            <h4 class="mb-8 text-3xl font-bold text-center md:text-left">Education</h4>
+            <!-- Column 1 content -->
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Master’s Degree: Research for Design and Innovation</h5>
+                <h6 class="text-lg font-bold">ELISAVA Barcelona School of Design and Engineering
+                    </h6>
+                <p>2013 - 2014</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Bachelor's: Electromechanical Engineering</h5>
+                <h6 class="text-lg font-bold">Chihuahua Institute of Technology                    
+                    </h6>
+                <p>2005 - 2010</p>
+            </div>
+            <br>
+
+        </section>
+    
+        <!-- The second column can be added here. Example: -->
+        <!-- <section class="px-20 mt-10"> -->
+            <!-- Column 2 content -->
+        <!-- </section> -->
+        <section class="px-20 mt-10">
+            <h4 class="mb-8 text-3xl font-bold text-center md:text-left">Additional Qualifications</h4>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Convolutional Neural Networks</h5>
+                <h6 class="text-lg font-bold">Coursera</h6>
+                <p>2021</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Structuring Machine Learning Projects</h5>
+                <h6 class="text-lg font-bold">Coursera</h6>
+                <p>2021</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Neural Networks and Deep Learning</h5>
+                <h6 class="text-lg font-bold">Coursera</h6>
+                <p>2021</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization</h5>
+                <h6 class="text-lg font-bold">Coursera</h6>
+                <p>2021</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Sequence Models</h5>
+                <h6 class="text-lg font-bold">Coursera</h6>
+                <p>2021</p>
+            </div>
+            <br>
+            <div class="flex flex-col mb-4 md:mb-0">
+                <h5 class="text-xl md:text-2xl font-bold">Business Model Design (Bootcamp)</h5>
+                <h6 class="text-lg font-bold">Vlerick Business School</h6>
+                <p>2016</p>
+            </div>
+            <br>
+
+
+        </section>
+
+
+
+    </div>
+    
+
+
+
+
+
+
+
+
+        <footer class="absolute w-full h-36 bottom-0 p-8 px-16 bg-gray-800 text-gray-50">
+            <p class="text-2xl">Thank you for checking out my portfolio</p>
+            <a class="text-lg" href="rodolfo.nevarez.g@gmail.com">rodolfo.nevarez.g@gmail.com</a>
+        </footer>
+        <div class="h-80">
+        </div>
+        </div>
+
+        
+        
+{% endblock %}

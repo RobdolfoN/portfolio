@@ -1,0 +1,615 @@
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+  
+
+
+
+{% block head %}
+<head>
+  <meta charset="UTF-8">
+  <title>Leaflet Square Drawing</title>
+  <!-- Include Leaflet CSS and JavaScript -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Include Leaflet Draw CSS and JavaScript -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+  <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+  <style>
+      #map { height: 400px; }
+  </style>
+</head>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+<div class="relative text-gray-800 bg-gray-50">
+    <section class="py-10 md:py-16">
+        <div class="container max-w-screen-xl mx-auto px-4">
+            <div class="text-left">
+                <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">BBA</h6>
+                <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                    Please enter the geographic bounds for the area you wish to visualize.
+                </p>
+            </div>
+
+            <h1>Enter the Bounds for the DEM</h1>
+            
+            <form method="post" action="{% url 'bba' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="id_south">South Latitude:</label>
+                    <input type="text" name="south" id="id_south" required>
+                </div>
+                <div>
+                    <label for="id_north">North Latitude:</label>
+                    <input type="text" name="north" id="id_north" required>
+                </div>
+                <div>
+                    <label for="id_east">East Longitude:</label>
+                    <input type="text" name="east" id="id_east" required>
+                </div>
+                <div>
+                    <label for="id_west">West Longitude:</label>
+                    <input type="text" name="west" id="id_west" required>
+                </div>
+                <input type="submit" value="Generate DEM" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+            </form>
+
+            <!-- Display the Plotly graph if it exists --> 
+            {% if pcloud %}
+                <div>
+                    <h1>3D Terrain Visualization</h1>
+                    <div>{{ pcloud|safe }}</div>
+                </div>
+            {% else %}
+                <p>No terrain data to display. Please enter the bounds and submit the form.</p>
+            {% endif %}
+        </div>
+    </section>
+  </div>
+
+{% endblock %}
+
+
+
+
+<!-- working map -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8", name="csrf-token" content="{{ csrf_token }}">
+    <title>DEM Visualizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <style>
+        
+        #map {
+            height: 400px;
+        }
+        /* Custom styles for the rectangle corners */
+        .leaflet-draw-handle {
+            border-color: #3498db;
+            border-width: 2px;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+        /* Custom styles for the rectangle edge line */
+        .leaflet-edit-move, .leaflet-edit-resize {
+            border: 2px dotted #3498db;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<button id="generate-dem" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Generate DEM
+</button>
+
+<form id="csrf-form">{% csrf_token %}</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Define the center of the map and set the bounds around the provided coordinate
+    var centerLat = 48.118;  
+    var centerLng = -78.125;
+    var latlngOffset = 0.02; // Adjust this value as needed
+
+    // Define the corners of the bounds
+    var bounds = [
+            [centerLat - latlngOffset, centerLng - latlngOffset], // Southwest corner
+            [centerLat + latlngOffset, centerLng + latlngOffset]  // Northeast corner
+    ];
+
+    // Initialize the map
+    var map = L.map('map').fitBounds(bounds);
+
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     maxZoom: 5,
+        //     attribution: '© OpenStreetMap contributors'
+        // }).addTo(map);
+
+
+    //     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    // }).addTo(map);
+
+        // Satellite imagery layer from Esri
+    // var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    // });
+
+    // // Labels and streets layer from Humanitarian OpenStreetMap Team
+    // var hotLayer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    //     opacity: 0.3, // Adjust transparency
+    //     attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+    // });
+
+    // // Add both layers to the map
+    // esriSatellite.addTo(map);
+    // hotLayer.addTo(map);
+
+    var esriImagery = L.layerGroup([
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'),
+        // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}')
+    ]).addTo(map);
+
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+// Initialize the draw control and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+    edit: {
+        featureGroup: drawnItems,
+        edit: true,  // Disable the edit feature
+        remove: false // Disable the delete feature
+    },
+    draw: false // Disable all draw features
+});
+map.addControl(drawControl);
+
+// Create a pre-drawn rectangle based on the bounds and add it to the map
+var preDrawnRectangle = new L.Rectangle(bounds, {
+    color: "#3498db",
+    weight: 2,
+    clickable: false // Make the rectangle not clickable so it cannot be edited or deleted
+}).addTo(drawnItems);
+
+map.fitBounds(bounds);
+        
+        document.getElementById('generate-dem').addEventListener('click', function() {
+            var bounds = map.getBounds();
+            var south = bounds.getSouth();
+            var north = bounds.getNorth();
+            var east = bounds.getEast();
+            var west = bounds.getWest();
+            
+            // Fetch CSRF token
+            var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            // Make a POST request to the server with the bounds
+            fetch('{% url "bba" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ south: south, north: north, east: east, west: west })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>
+
+
+<!-- MAP with VIZUALIZER -->
+
+
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+  
+
+
+
+{% block head %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>DEM</script>
+  <!-- Include Leaflet Draw CSS and JavaScript -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+  <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+
+  <style>
+      /* Custom styles for the rectangle corners */
+      .leaflet-draw-handle {
+            border-color: #3498db;
+            border-width: 2px;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+        /* Custom styles for the rectangle edge line */
+        .leaflet-edit-move, .leaflet-edit-resize {
+            border: 2px dotted #3498db;
+        }
+   
+    </style>
+
+</head>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+<div class="relative text-gray-800 bg-gray-50">
+    <section class="py-10 md:py-16">
+        <div class="container max-w-screen-xl mx-auto px-4">
+            <div class="text-left">
+                <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">BBA</h6>
+                <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                    Please enter the geographic bounds for the area you wish to visualize.
+                </p>
+            </div>
+
+            <h1>Drag</h1>
+
+            <div id="map"></div>
+<div>
+<button id="generate-dem" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Generate DEM
+</button>
+
+<form id="csrf-form">{% csrf_token %}</form>
+</div>
+            
+
+
+            <!-- Display the Plotly graph if it exists --> 
+            {% if pcloud %}
+                <div>
+                    <h1>3D Terrain Visualization</h1>
+                    <div>{{ pcloud|safe }}</div>
+                </div>
+            {% else %}
+                <p>No terrain data to display. Please enter the bounds and submit the form.</p>
+            {% endif %}
+        </div>
+    </section>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Define the center of the map and set the bounds around the provided coordinate
+    var centerLat = 48.118;  
+    var centerLng = -78.125;
+    var latlngOffset = 0.02; // Adjust this value as needed
+
+    // Define the corners of the bounds
+    var bounds = [
+            [centerLat - latlngOffset, centerLng - latlngOffset], // Southwest corner
+            [centerLat + latlngOffset, centerLng + latlngOffset]  // Northeast corner
+    ];
+
+    // Initialize the map
+    var map = L.map('map').fitBounds(bounds);
+
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     maxZoom: 5,
+        //     attribution: '© OpenStreetMap contributors'
+        // }).addTo(map);
+
+
+    //     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    // }).addTo(map);
+
+        // Satellite imagery layer from Esri
+    // var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    // });
+
+    // // Labels and streets layer from Humanitarian OpenStreetMap Team
+    // var hotLayer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    //     opacity: 0.3, // Adjust transparency
+    //     attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+    // });
+
+    // // Add both layers to the map
+    // esriSatellite.addTo(map);
+    // hotLayer.addTo(map);
+
+    var esriImagery = L.layerGroup([
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'),
+        // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}')
+    ]).addTo(map);
+
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+// Initialize the draw control and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+    edit: {
+        featureGroup: drawnItems,
+        edit: true,  // Disable the edit feature
+        remove: false // Disable the delete feature
+    },
+    draw: false // Disable all draw features
+});
+map.addControl(drawControl);
+
+// Create a pre-drawn rectangle based on the bounds and add it to the map
+var preDrawnRectangle = new L.Rectangle(bounds, {
+    color: "#3498db",
+    weight: 2,
+    clickable: false // Make the rectangle not clickable so it cannot be edited or deleted
+}).addTo(drawnItems);
+
+map.fitBounds(bounds);
+        
+        document.getElementById('generate-dem').addEventListener('click', function() {
+            var bounds = map.getBounds();
+            var south = bounds.getSouth();
+            var north = bounds.getNorth();
+            var east = bounds.getEast();
+            var west = bounds.getWest();
+            
+            // Fetch CSRF token
+            var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            // Make a POST request to the server with the bounds
+            fetch('{% url "bba" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ south: south, north: north, east: east, west: west })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+<!-- ////////////////// WORKING TEMPLATE MAP + 3D Visualizer -->
+
+
+
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8", name="csrf-token" content="{{ csrf_token }}">
+    <title>DEM Visualizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <style>
+        
+        #map {
+            height: 400px;
+        }
+        /* Custom styles for the rectangle corners */
+        .leaflet-draw-handle {
+            border-color: #3498db;
+            border-width: 2px;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+        /* Custom styles for the rectangle edge line */
+        .leaflet-edit-move, .leaflet-edit-resize {
+            border: 2px dotted #3498db;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<button id="generate-dem" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Generate DEM
+</button>
+
+<form id="csrf-form">{% csrf_token %}</form>
+
+
+
+
+
+
+<div class="relative text-gray-800 bg-gray-50">
+    <section class="py-10 md:py-16">
+        <div class="container max-w-screen-xl mx-auto px-4">
+            <div class="text-left">
+                <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">BBA</h6>
+                <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                    Please enter the geographic bounds for the area you wish to visualize.
+                </p>
+            </div>
+
+            <h1>Enter the Bounds for the DEM</h1>
+            
+            <form method="post" action="{% url 'bba' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="id_south">South Latitude:</label>
+                    <input type="text" name="south" id="id_south" required>
+                </div>
+                <div>
+                    <label for="id_north">North Latitude:</label>
+                    <input type="text" name="north" id="id_north" required>
+                </div>
+                <div>
+                    <label for="id_east">East Longitude:</label>
+                    <input type="text" name="east" id="id_east" required>
+                </div>
+                <div>
+                    <label for="id_west">West Longitude:</label>
+                    <input type="text" name="west" id="id_west" required>
+                </div>
+                <input type="submit" value="Generate DEM" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+            </form>
+
+            <!-- Display the Plotly graph if it exists --> 
+            {% if pcloud %}
+                <div>
+                    <h1>3D Terrain Visualization</h1>
+                    <div>{{ pcloud|safe }}</div>
+                </div>
+            {% else %}
+                <p>No terrain data to display. Please enter the bounds and submit the form.</p>
+            {% endif %}
+        </div>
+    </section>
+  </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Define the center of the map and set the bounds around the provided coordinate
+    var centerLat = 48.118;  
+    var centerLng = -78.125;
+    var latlngOffset = 0.02; // Adjust this value as needed
+
+    // Define the corners of the bounds
+    var bounds = [
+            [centerLat - latlngOffset, centerLng - latlngOffset], // Southwest corner
+            [centerLat + latlngOffset, centerLng + latlngOffset]  // Northeast corner
+    ];
+
+    // Initialize the map
+    var map = L.map('map').fitBounds(bounds);
+
+    var esriImagery = L.layerGroup([
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'),
+        // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}')
+    ]).addTo(map);
+
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+// Initialize the draw control and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+    edit: {
+        featureGroup: drawnItems,
+        edit: true,  // Disable the edit feature
+        remove: false // Disable the delete feature
+    },
+    draw: false // Disable all draw features
+});
+map.addControl(drawControl);
+
+// Create a pre-drawn rectangle based on the bounds and add it to the map
+var preDrawnRectangle = new L.Rectangle(bounds, {
+    color: "#3498db",
+    weight: 2,
+    clickable: false // Make the rectangle not clickable so it cannot be edited or deleted
+}).addTo(drawnItems);
+
+map.fitBounds(bounds);
+        
+        document.getElementById('generate-dem').addEventListener('click', function() {
+            var bounds = map.getBounds();
+            var south = bounds.getSouth();
+            var north = bounds.getNorth();
+            var east = bounds.getEast();
+            var west = bounds.getWest();
+            
+            // Fetch CSRF token
+            var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            // Make a POST request to the server with the bounds
+            fetch('{% url "bba" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ south: south, north: north, east: east, west: west })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+
+</script>
+
+
+</body>
+
+
+{% endblock %}

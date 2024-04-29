@@ -1,0 +1,215 @@
+{% extends "portfolioapp/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8", name="csrf-token" content="{{ csrf_token }}">
+    <title>DEM Visualizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <style>
+        
+        #map {
+            height: 400px;
+        }
+        /* Custom styles for the rectangle corners */
+        .leaflet-draw-handle {
+            border-color: #3498db;
+            border-width: 2px;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+        /* Custom styles for the rectangle edge line */
+        .leaflet-edit-move, .leaflet-edit-resize {
+            border: 2px dotted #3498db;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="relative text-gray-800 bg-gray-50">
+        <section class="py-10 md:py-16">
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <div class="text-left">
+                    <h6 class="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">
+                        Welcome to the Digital Elevation Model Visualizer </h6>
+                    <h1 class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                        first, get the bounds of the area of interest by editing the square below. </h1>
+                    <div id="map" class="h-64 sm:h-96 w-full"></div>
+                    <p class="font-normal text-gray-600 text-sm md:text-md lg:text-lg mb-16">
+                        The bounds of the selected area are:<div id="bounds-info" class="items-center p-4 text-sm bg-gray-600 rounded-lg shadow-md mt-4">
+                            <!-- Stylish container for displaying the bounds -->
+                                </div>
+                        
+                    </p>  
+                    
+                    
+                </div>
+
+                <form id="csrf-form">{% csrf_token %}</form>
+
+
+
+
+
+
+                    <div class="relative text-gray-800 bg-gray-50">
+                        <section class="py-10 md:py-16">
+                            <div class="container max-w-screen-xl mx-auto px-4">
+                                <div class="text-left">
+                                    
+                                    
+                                </div>
+
+                                <h1>Second, enter the bounds and hit "Generate DEM":</h1>
+                                
+                                <form method="post" action="{% url 'bba' %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        <label for="id_south" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">South Latitude:</label>
+                                        <input type="text" name="south" id="id_south" class="appearance-none block w-small bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required>
+                                    </div>
+                                    <div>
+                                        <label for="id_north" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">North Latitude:</label>
+                                        <input type="text" name="north" id="id_north" class="appearance-none block w-small bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required>
+                                    </div>
+                                    <div>
+                                        <label for="id_east" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">East Longitude:</label>
+                                        <input type="text" name="east" id="id_east" class="appearance-none block w-small bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required>
+                                    </div>
+                                    <div>
+                                        <label for="id_west" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">West Longitude:</label>
+                                        <input type="text" name="west" id="id_west" class="appearance-none block w-small bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required>
+                                    </div>
+                                    <input type="submit" value="Generate DEM" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+                                </form>
+
+                                <!-- Display the Plotly graph if it exists --> 
+                                <!-- {% if pcloud %}
+                                    <div class="h-64 sm:h-96 w-full">
+                                        
+                                        <div style="width: 100%; max-width: 1500px; height: 700px;" class="mx-auto">
+                                            {{ pcloud|safe }}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <p>No terrain data to display. Please enter the bounds and submit the form.</p>
+                                {% endif %} -->
+                                <!-- Display the Plotly graph if it exists -->
+                            {% if pcloud %}
+                            <div class="flex justify-center items-center w-full">
+                            <div class="w-full max-w-3xl">
+                                <!-- Set a max-width for larger screens and use mx-auto to center -->
+                                <div class="h-auto" style="width: 100%; max-width: 1500px; height: 700px;" class="mx-auto">
+                                {{ pcloud|safe }}
+                                </div>
+                            </div>
+                            </div>
+                            {% else %}
+                            <p class="text-center">No terrain data to display. Please enter the bounds and submit the form.</p>
+                            {% endif %}
+                            </div>
+                        </section>
+                    </div>
+        
+            </div>
+            </section>
+        </div>
+            
+            
+            
+
+
+
+                
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the map with a center and zoom level that fits the bounds
+        var centerLat = 48.118;  
+        var centerLng = -78.125;
+        var latlngOffset = 0.02;
+    
+        // Set initial bounds for the map
+        var initialBounds = [
+            [centerLat - latlngOffset, centerLng - latlngOffset], // Southwest corner
+            [centerLat + latlngOffset, centerLng + latlngOffset]  // Northeast corner
+        ];
+    
+        // Create the map and set its bounds
+        var map = L.map('map').fitBounds(initialBounds);
+    
+        // Add satellite imagery and boundary layers
+        var esriImagery = L.layerGroup([
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}')
+        ]).addTo(map);
+    
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+    
+        // Set up the drawing control and allow rectangle drawing
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems,
+                edit: true,  // Enable the ability to edit features
+                remove: false // Enable the ability to remove features
+            },
+            draw: false 
+        });
+        map.addControl(drawControl);
+    
+        // Add a pre-drawn rectangle based on the initial bounds
+        var preDrawnRectangle = new L.Rectangle(initialBounds, {
+            color: "#3498db",
+            weight: 2,
+            clickable: true // Make the rectangle clickable so it can be edited or deleted
+        }).addTo(drawnItems);
+    
+        // Function to display bounds information
+        function showBounds(bounds) {
+            document.getElementById('bounds-info').innerHTML = 
+                'South: ' + bounds.getSouth().toFixed(6) + '<br>' +
+                'North: ' + bounds.getNorth().toFixed(6) + '<br>' +
+                'East: ' + bounds.getEast().toFixed(6) + '<br>' +
+                'West: ' + bounds.getWest().toFixed(6);
+        }
+    
+        showBounds(preDrawnRectangle.getBounds()); // Show bounds of the pre-drawn rectangle initially
+    
+        // Handle the creation and editing of shapes
+        map.on(L.Draw.Event.CREATED, function(event) {
+            var layer = event.layer;
+            drawnItems.addLayer(layer);
+            if (layer instanceof L.Rectangle) {
+                showBounds(layer.getBounds());
+            }
+        });
+    
+        map.on('draw:edited', function(event) {
+            var layers = event.layers;
+            layers.eachLayer(function(layer) {
+                if (layer instanceof L.Rectangle) {
+                    showBounds(layer.getBounds());
+                }
+            });
+        });
+    });
+    </script>
+
+
+</body>
+
+
+{% endblock %}
+

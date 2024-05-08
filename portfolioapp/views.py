@@ -396,7 +396,7 @@ def ecozlounge(request):
 
 
 
-def bba(request):
+def dem(request):
     pcloud = None
 
     if request.method == 'POST':
@@ -477,4 +477,4 @@ def bba(request):
                 print("Failed to fetch data:", response.status_code)
 
     context = {'pcloud': pcloud}
-    return render(request, "portfolioapp/pages/bba.html", context)
+    return render(request, "portfolioapp/pages/dem.html", context)

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import plotly
 from .models import *
 from .forms import MapBounds
 import pathlib
@@ -467,8 +468,9 @@ def dem(request):
                     # width=1200,
                     # height=500
                 )
-                # Convert the Plotly figure to HTML and include it in the context
-                pcloud = fig.to_html(full_html=False, include_plotlyjs='cdn')
+                # Convert the Plotly figure to JSON
+                pcloud = json.dumps(fig.to_dict(), cls=plotly.utils.PlotlyJSONEncoder)
+                # pcloud = fig.to_html(full_html=False, include_plotlyjs='cdn')
                 
 
                 # Remove the temporary file

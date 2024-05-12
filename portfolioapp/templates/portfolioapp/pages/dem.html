@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         
         #map {
@@ -111,15 +112,16 @@
                                 {% endif %} -->
                                 <!-- Display the Plotly graph if it exists -->
                             {% if pcloud %}
-                            <div class="flex justify-center items-center w-full">
-                            <div class="w-full max-w-3xl">
-                                <div class="h-auto mx-auto" style="max-width: 100%; height: 500px;">
+                            <!-- <div class="flex justify-center items-center w-full"> -->
+                            <!-- <div class="w-full max-w-3xl"> -->
+                                <!-- <div class="h-auto mx-auto" style="max-width: 100%; height: 500px;">
                                 {{ pcloud|safe }}
-                                </div>
-                            </div>
-                            </div>
+                                </div> -->
+                                <div id="pcloud" style="width: 100%; height: 500px;"></div>
+                            <!-- </div> -->
+                            <!-- </div> -->
                             {% else %}
-                            <p class="text-center">No terrain data to display. Please enter the bounds and submit the form.</p>
+                            <p class="text-center"></p>
                             {% endif %}
                             </div>
                         </section>
@@ -134,7 +136,7 @@
 
 
 
-                
+             
 
 
 
@@ -243,6 +245,16 @@
 
     });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if ({{ pcloud|safe }}) {
+            var plotData = {{ pcloud|safe }};
+            Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+        }
+    });
+</script>
+
 
 
 </body>

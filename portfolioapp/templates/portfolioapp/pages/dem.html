@@ -136,22 +136,22 @@
             
 
         
-        <!-- <script>
+        <script>
             document.addEventListener('DOMContentLoaded', function() {
                 {% if pcloud %}
                 var plotData = {{ pcloud|safe }};
                 Plotly.newPlot('pcloud', plotData.data, plotData.layout);
                 {% endif %}
             });
-        </script> -->
+        </script>
 
-<script>
+<!-- <script>
     
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
     Plotly.newPlot('pcloud', data, layout);
     
-</script>
+</script> -->
         
 
     

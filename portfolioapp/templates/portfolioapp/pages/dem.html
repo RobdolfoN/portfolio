@@ -213,6 +213,8 @@
                 }
             });
         });
+
+        
         var statusMessage = document.getElementById('status-message');
 
         document.getElementById('generate-dem').addEventListener('click', function() {
@@ -234,6 +236,10 @@
         .then(response => response.json())
         .then(data => {
             statusMessage.textContent = 'DEM generated successfully.';
+            if (data.pcloud) {
+            var plotData = JSON.parse(data.pcloud);
+            Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+        }
         })
         .catch(error => {
             statusMessage.textContent = 'Generating DEM, please wait...';
@@ -245,16 +251,17 @@
 
     });
     </script>
-
+    
+{% if pcloud %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        if ({{ pcloud|safe }}) {
-            var plotData = {{ pcloud|safe }};
-            Plotly.newPlot('pcloud', plotData.data, plotData.layout);
-        }
+        {% if pcloud %}
+        var plotData = {{ pcloud|safe }};
+        Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+        {% endif %}
     });
 </script>
-
+{% endif %}
 
 
 </body>

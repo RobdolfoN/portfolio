@@ -398,7 +398,7 @@ def ecozlounge(request):
 
 
 def dem(request):
-    # pcloud = None
+    pcloud = None
 
     if request.method == 'POST':
         form = MapBounds(request.POST)
@@ -475,6 +475,7 @@ def dem(request):
 
                 # Remove the temporary file
                 os.remove(tmp_file_path)
+                
             else:
                 print("Failed to fetch data:", response.status_code)
 

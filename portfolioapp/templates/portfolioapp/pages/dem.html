@@ -275,9 +275,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM fully loaded and parsed');
         try {
-            if ({{ pcloud|safe }}) {
+            var plotData = {{ pcloud|safe }};
+            if (plotData) {
                 console.log('Plotly data found, rendering plot...');
-                var plotData = {{ pcloud|safe }};
                 Plotly.newPlot('pcloud', plotData.data, plotData.layout);
             } else {
                 console.log('No Plotly data available');

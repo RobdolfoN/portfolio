@@ -32,7 +32,7 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
+            'class': 'logging.FileHandler',
             'filename': '/home/ubuntu/portfolio/logs/django.log',
             'maxBytes': 1024*1024*5,  # 5 MB
             'backupCount': 5,
@@ -40,6 +40,11 @@ LOGGING = {
     },
     'loggers': {
         'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'portfolioapp.views': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,

@@ -398,7 +398,7 @@ def ecozlounge(request):
 
 
 def dem(request):
-    pcloud = None
+    # pcloud = None
 
     if request.method == 'POST':
         form = MapBounds(request.POST)

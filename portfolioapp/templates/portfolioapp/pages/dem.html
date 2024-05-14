@@ -145,14 +145,26 @@
             });
         </script> -->
 
-<script>
+<!-- <script>
     
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
     Plotly.newPlot('pcloud', data, layout);
     
-</script>
+</script> -->
         
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var plotDataContainer = document.getElementById('pcloud-data');
+        if (plotDataContainer && plotDataContainer.textContent.trim() !== '') {
+            var plotData = JSON.parse(plotDataContainer.textContent);
+            Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+        } else {
+            console.log('No data available for plotting.');
+        }
+    });
+    </script>
+    
 
              
 

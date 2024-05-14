@@ -270,6 +270,24 @@
 
     });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        try {
+            if ({{ pcloud|safe }}) {
+                console.log('Plotly data found, rendering plot...');
+                var plotData = {{ pcloud|safe }};
+                Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+            } else {
+                console.log('No Plotly data available');
+            }
+        } catch (error) {
+            console.error('Error rendering Plotly plot:', error);
+        }
+    });
+</script>
+
     
 
 

@@ -224,37 +224,37 @@
         });
 
 
-        var statusMessage = document.getElementById('status-message');
+        // var statusMessage = document.getElementById('status-message');
 
-        document.getElementById('generate-dem').addEventListener('click', function() {
-            statusMessage.textContent = 'Generating DEM, please wait...';
-            fetch('{% url "dem" %}', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            },
-            body: JSON.stringify({
-                south: map.getBounds().getSouth(),
-                north: map.getBounds().getNorth(),
-                east: map.getBounds().getEast(),
-                west: map.getBounds().getWest()
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            statusMessage.textContent = 'DEM generated successfully.';
-            if (data.pcloud) {
-            var plotData = JSON.parse(data.pcloud);
-            Plotly.newPlot('pcloud', plotData.data, plotData.layout);
-        }
-        })
-        .catch(error => {
-            statusMessage.textContent = 'Generating DEM, please wait...';
-            console.error('Error:', error);
-        });
-        });
+        // document.getElementById('generate-dem').addEventListener('click', function() {
+        //     statusMessage.textContent = 'Generating DEM, please wait...';
+        //     fetch('{% url "dem" %}', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //             'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        //     },
+        //     body: JSON.stringify({
+        //         south: map.getBounds().getSouth(),
+        //         north: map.getBounds().getNorth(),
+        //         east: map.getBounds().getEast(),
+        //         west: map.getBounds().getWest()
+        //     })
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     statusMessage.textContent = 'DEM generated successfully.';
+        //     if (data.pcloud) {
+        //     var plotData = JSON.parse(data.pcloud);
+        //     Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+        // }
+        // })
+        // .catch(error => {
+        //     statusMessage.textContent = 'Generating DEM, please wait...';
+        //     console.error('Error:', error);
+        // });
+        // });
         
     
 

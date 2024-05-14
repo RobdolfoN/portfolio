@@ -117,13 +117,7 @@
                                 <!-- <div class="h-auto mx-auto" style="max-width: 100%; height: 500px;">
                                 {{ pcloud|safe }}
                                 </div> -->
-                                <script>
-    
-                                    var data = {{ pcloud|safe }}; 
-                                    var layout = { autosize: true };
-                                    Plotly.newPlot('pcloud', data, layout);
-                                    
-                                </script>
+                                
                                 <div id="pcloud" style="width: 100%; height: 500px;"></div>
                             <!-- </div> -->
                             <!-- </div> -->
@@ -151,13 +145,13 @@
             });
         </script> -->
 
-<!-- <script>
+<script>
     
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
     Plotly.newPlot('pcloud', data, layout);
     
-</script> -->
+</script>
         
 
              

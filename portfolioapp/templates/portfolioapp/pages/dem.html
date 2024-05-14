@@ -145,9 +145,11 @@
         </script> -->
 
 <script>
+    {% if pcloud %}
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
     Plotly.newPlot('pcloud', data, layout);
+    {% endif %}
 </script>
         
 

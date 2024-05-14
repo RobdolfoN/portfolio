@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-j+&3tb^hu5shd(b$iif65dcdqcy2o*zp#+u-8)lg)cmy074nb!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LOGGING = {
+# LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {

@@ -134,7 +134,16 @@
             
             
 
-
+        {% if pcloud %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                {% if pcloud %}
+                var plotData = {{ pcloud|safe }};
+                Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+                {% endif %}
+            });
+        </script>
+        {% endif %}
 
              
 
@@ -214,7 +223,7 @@
             });
         });
 
-        
+
         var statusMessage = document.getElementById('status-message');
 
         document.getElementById('generate-dem').addEventListener('click', function() {
@@ -252,16 +261,7 @@
     });
     </script>
     
-{% if pcloud %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        {% if pcloud %}
-        var plotData = {{ pcloud|safe }};
-        Plotly.newPlot('pcloud', plotData.data, plotData.layout);
-        {% endif %}
-    });
-</script>
-{% endif %}
+
 
 
 </body>

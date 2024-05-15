@@ -113,15 +113,15 @@
                                 {% endif %} -->
                                 <!-- Display the Plotly graph if it exists -->
                             {% if pcloud %}
-                            <div class="flex justify-center items-center w-full">
-                            <div class="w-full max-w-3xl"> 
-                                 <div class="h-auto mx-auto" style="max-width: 100%; height: 500px;">
-                                {{ pcloud|safe }}
-                                </div>
+                            <!-- <div class="flex justify-center items-center w-full"> -->
+                            <!-- <div class="w-full max-w-3xl">  -->
+                                 <!-- <div class="h-auto mx-auto" style="max-width: 100%; height: 500px;"> -->
+                                <!-- {{ pcloud|safe }} -->
+                                <!-- </div> -->
                                 
-                                <!-- <div decoding="async" loading="lazy" id="pcloud" style="width: 100%; height: 500px;"></div> -->
-                            </div>
-                            </div>
+                                <div decoding="async" loading="lazy" id="pcloud" style="width: 100%; height: 500px;"></div>
+                            <!-- </div> -->
+                            <!-- </div> -->
                             {% else %}
                             <p class="text-center"></p>
                             {% endif %}
@@ -146,13 +146,13 @@
             });
         </script> -->
 
-<!-- <script>
+<script>
     
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
     Plotly.newPlot('pcloud', data, layout);
     
-</script> -->
+</script>
         
 
              
@@ -287,6 +287,28 @@
         }
     });
 </script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        try {
+            // Log the raw data being passed to Plotly
+            var plotData = {{ pcloud|default:"null" }};
+            console.log('Plotly data:', plotData);
+
+            // Check if plotData is not null and is a valid object
+            if (plotData) {
+                console.log('Plotly data found, rendering plot...');
+                Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+            } else {
+                console.log('No Plotly data available');
+            }
+        } catch (error) {
+            console.error('Error rendering Plotly plot:', error);
+        }
+    });
+</script>
+
 
     
 

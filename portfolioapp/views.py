@@ -477,8 +477,8 @@ def dem(request):
                     # height=500
                 )
                 # Convert the Plotly figure to JSON
-                # pcloud = json.dumps(fig.to_dict(), cls=plotly.utils.PlotlyJSONEncoder)
-                pcloud = fig.to_html(full_html=False, include_plotlyjs='cdn')
+                pcloud = json.dumps(fig.to_dict(), cls=plotly.utils.PlotlyJSONEncoder)
+                # pcloud = fig.to_html(full_html=False, include_plotlyjs='cdn')
                 
 
                 # Remove the temporary file

@@ -14,8 +14,7 @@ import plotly.graph_objects as go
 import os
 import tempfile
 import json
-import logging
-logger = logging.getLogger(__name__)
+
 
 
 
@@ -402,7 +401,6 @@ def ecozlounge(request):
 def dem(request):
     # pcloud = json.dumps({'info': 'Submit the form to generate a DEM'})
     pcloud = None
-    logger.debug("Received request for DEM generation")
 
     if request.method == 'POST':
         form = MapBounds(request.POST)
@@ -411,24 +409,20 @@ def dem(request):
             north = float(form.cleaned_data['north'])
             east = float(form.cleaned_data['east'])
             west = float(form.cleaned_data['west'])
-            logger.debug(f"Form data: South={south}, North={north}, East={east}, West={west}")
             api_key = os.environ.get('TOPO_API_key')
             
 
             url = f'https://portal.opentopography.org/API/globaldem?demtype=SRTMGL3&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff&API_Key={api_key}'
             response = requests.get(url)
             if response.status_code == 200:
-                logger.debug("API request successful")
                 # Use a temporary file to save the response content
                 with tempfile.NamedTemporaryFile(delete=False, suffix='.tif') as tmp_file:
                     tmp_file.write(response.content)
                     tmp_file_path = tmp_file.name
-                logger.debug(f"Temporary file written: {tmp_file_path}")
 
                 # Read the raster file
                 with rasterio.open(tmp_file_path) as src:
                     elev = src.read(1)
-                    logger.debug(f"Raster shape: {elev.shape}, Bounds: {src.bounds}")
                     bounds = src.bounds
                     transform = src.transform 
                 
@@ -483,12 +477,9 @@ def dem(request):
 
                 # Remove the temporary file
                 os.remove(tmp_file_path)
-                logger.debug("Temporary file deleted")
                 
             else:
                 print("Failed to fetch data:", response.status_code)
-                logger.error(f"Failed to fetch data with status code: {response.status_code}")
-                logger.debug(f"Response: {response.text}")
 
     context = {'pcloud': pcloud}
     return render(request, "portfolioapp/pages/dem.html", context)

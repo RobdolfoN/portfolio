@@ -234,10 +234,10 @@
         });
 
 
-        // var statusMessage = document.getElementById('status-message');
+        var statusMessage = document.getElementById('status-message');
 
-        // document.getElementById('generate-dem').addEventListener('click', function() {
-        //     statusMessage.textContent = 'Generating DEM, please wait...';
+        document.getElementById('generate-dem').addEventListener('click', function() {
+            statusMessage.textContent = 'Generating DEM, please wait...';
         //     fetch('{% url "dem" %}', {
         //         method: 'POST',
         //         headers: {
@@ -264,7 +264,9 @@
         //     statusMessage.textContent = 'Generating DEM, please wait...';
         //     console.error('Error:', error);
         // });
-        // });
+        });
+
+        
         
     
 
@@ -309,7 +311,45 @@
     });
 </script> -->
 
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        try {
+            // Log the raw data being passed to Plotly
+            var plotData = {{ pcloud|default:"null" }};
+            console.log('Plotly data:', plotData);
 
+            // Check if plotData is not null and is a valid object
+            if (plotData) {
+                console.log('Plotly data found, rendering plot...');
+                Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+            } else {
+                console.log('No Plotly data available');
+            }
+        } catch (error) {
+            console.error('Error rendering Plotly plot:', error);
+        }
+    });
+</script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        try {
+            var plotData = {{ pcloud|safe }};
+            console.log('Plotly data:', plotData);
+
+            if (plotData) {
+                console.log('Plotly data found, rendering plot...');
+                Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+            } else {
+                console.log('No Plotly data available');
+            }
+        } catch (error) {
+            console.error('Error rendering Plotly plot:', error);
+        }
+    });
+</script>
     
 
 

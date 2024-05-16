@@ -399,8 +399,8 @@ def ecozlounge(request):
 
 
 def dem(request):
-    # pcloud = json.dumps({'info': 'Submit the form to generate a DEM'})
-    pcloud = None
+    pcloud = json.dumps({"info": "Submit the form to generate a DEM"})
+    # pcloud = None
 
     if request.method == 'POST':
         form = MapBounds(request.POST)

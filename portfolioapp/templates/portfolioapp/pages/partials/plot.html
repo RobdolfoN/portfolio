@@ -1,0 +1,67 @@
+<head>
+
+    <script src="https://unpkg.com/htmx.org@1.3.3"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+</head>
+
+
+<!-- <div id="pcloud-plot"> -->
+
+    
+        
+
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded and parsed');
+            try {
+                var plotData = {{ pcloud|safe|default:"null" }};
+                console.log('Plotly data:', plotData);
+
+                if (plotData && plotData.data) {
+                    console.log('Plotly data found, rendering plot...');
+                    Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+                } else {
+                    console.log('No valid Plotly data available');
+                }
+            } catch (error) {
+                console.error('Error rendering Plotly plot:', error);
+            }
+        });
+    </script> -->
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded and parsed');
+            try {
+                var plotData = JSON.parse('{{ pcloud|safe }}');
+                console.log('Plotly data:', plotData);
+
+                if (plotData && plotData.data) {
+                    console.log('Plotly data found, rendering plot...');
+                    Plotly.newPlot('pcloud', plotData.data, plotData.layout);
+                } else {
+                    console.log('No valid Plotly data available');
+                }
+            } catch (error) {
+                console.error('Error rendering Plotly plot:', error);
+            }
+        });
+    </script> -->
+
+
+<div id="pcloud"> 
+<script>
+    
+    var data = {{ pcloud|safe }}; 
+    var layout = { autosize: true };
+    Plotly.newPlot('pcloud', data, layout);
+    
+</script>
+
+</div>
+
+
+
+

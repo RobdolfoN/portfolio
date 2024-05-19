@@ -488,13 +488,13 @@ def ecozlounge(request):
 
 
 def dem(request):
-    if 'pcloud' in request.session:
-        pcloud = request.session['pcloud']
-    else:
-        pcloud = json.dumps({"info": "Submit the form to generate a DEM"})
+    # if 'pcloud' in request.session:
+    #     pcloud = request.session['pcloud']
+    # else:
+    #     pcloud = json.dumps({"info": "Submit the form to generate a DEM"})
 
-    context = {'pcloud': pcloud}
-    return render(request, "portfolioapp/pages/dem.html", context)
+    # context = {'pcloud': pcloud}
+    return render(request, "portfolioapp/pages/dem.html")
 
 def generate_plot_data(request):
     if request.method == 'POST':

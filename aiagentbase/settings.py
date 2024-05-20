@@ -81,8 +81,12 @@ WSGI_APPLICATION = "aiagentbase.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": 'Belum_base_datos',
+        'USER': 'Rodolfo',
+        'PASSWORD': 'riquirransan79',
+        'HOST': 'belum-base-datos.c0w4xdzggjxh.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

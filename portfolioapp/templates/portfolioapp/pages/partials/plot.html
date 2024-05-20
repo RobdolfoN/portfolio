@@ -62,7 +62,7 @@
 
 </div> -->
 
-<div id="pcloud"> 
+<!-- <div id="pcloud"> 
     <script>
         try {
             var data = JSON.parse('{{ pcloud|escapejs }}');
@@ -76,9 +76,25 @@
             console.error("Error while creating plot:", e);
         }
     </script>
+</div> -->
+
+
+
+<div id="pcloud">
+    <script>
+        try {
+            var pcloudData = '{{ pcloud|escapejs|default:"" }}';
+            console.log("Raw pcloud data:", pcloudData);  // Log the raw data to the console
+            if (pcloudData) {
+                var data = JSON.parse(pcloudData);  // Properly parse the JSON string
+                console.log("Parsed plot data:", data);  // Log the data to the console
+                Plotly.newPlot('pcloud', data.data, data.layout);
+            } else {
+                console.error("pcloud data is undefined or empty");
+            }
+        } catch (e) {
+            console.error("Error while creating plot:", e);
+        }
+    </script>
 </div>
-
-
-
-
 

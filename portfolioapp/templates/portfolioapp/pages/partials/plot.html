@@ -51,7 +51,7 @@
     </script> -->
 
 
-<div id="pcloud"> 
+<!-- <div id="pcloud"> 
 <script>
     
     var data = {{ pcloud|safe }}; 
@@ -60,8 +60,23 @@
     
 </script>
 
-</div>
+</div> -->
 
+<div id="pcloud"> 
+    <script>
+        try {
+            var data = {{ pcloud|safe }};
+            console.log("Plot data:", data);  // Log the data to the console
+            if (data) {
+                Plotly.newPlot('pcloud', data.data, data.layout);
+            } else {
+                console.error("Data is undefined or null");
+            }
+        } catch (e) {
+            console.error("Error while creating plot:", e);
+        }
+    </script>
+</div>
 
 
 

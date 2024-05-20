@@ -51,24 +51,24 @@
     </script> -->
 
 
-<!-- <div id="pcloud"> 
+<!-- <div id="plot1"> 
 <script>
     
     var data = {{ pcloud|safe }}; 
     var layout = { autosize: true };
-    Plotly.newPlot('pcloud', data, layout);
+    Plotly.newPlot('plot1', data, layout);
     
 </script>
 
 </div> -->
 
-<div id="plot1"> 
+<div id="pcloud"> 
     <script>
         try {
-            var data = {{ pcloud|safe }};
+            var data = JSON.parse('{{ pcloud|escapejs }}');
             console.log("Plot data:", data);  // Log the data to the console
             if (data) {
-                Plotly.newPlot('plot1', data.data, data.layout);
+                Plotly.newPlot('pcloud', data.data, data.layout);
             } else {
                 console.error("Data is undefined or null");
             }
@@ -77,6 +77,8 @@
         }
     </script>
 </div>
+
+
 
 
 

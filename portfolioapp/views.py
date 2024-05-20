@@ -755,6 +755,6 @@ def render_plot(request):
                 print("Failed to fetch data:", response.status_code)
 
     # context = {'pcloud': pcloud}
-    return JsonResponse({'pcloud': pcloud})
+    # return JsonResponse({'pcloud': pcloud})
 
-    # return render(request, 'portfolioapp/pages/partials/plot.html', {'pcloud': pcloud})
+    return render(request, 'portfolioapp/pages/partials/plot.html', {'pcloud': pcloud})

@@ -80,7 +80,7 @@
 
 
 
-<div id="pcloud">
+<!-- <div id="pcloud">
     <script>
         try {
             var pcloudData = '{{ pcloud|escapejs|default:"" }}';
@@ -96,5 +96,7 @@
             console.error("Error while creating plot:", e);
         }
     </script>
-</div>
+</div> -->
 
+
+<div>{{ pcloud|safe }}</div>

@@ -65,7 +65,8 @@ def demplot(south, north, east, west, api_key):
             title='3D Terrain Visualization - Actual Elevation Scale',
             autosize=False,
         )
-        pcloud = json.dumps(fig.to_dict(), cls=plotly.utils.PlotlyJSONEncoder)
+        # pcloud = json.dumps(fig.to_dict(), cls=plotly.utils.PlotlyJSONEncoder)
+        pcloud = fig.to_html(full_html=False, include_plotlyjs='cdn')
         os.remove(tmp_file_path)
         return pcloud
     else:

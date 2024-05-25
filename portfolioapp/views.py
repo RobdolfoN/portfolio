@@ -773,6 +773,7 @@ def render_plot(request):
         form = MapBounds(request.POST)
         if form.is_valid():
             south = float(form.cleaned_data['south'])
+            print(f"API Key: {south}")
             north = float(form.cleaned_data['north'])
             east = float(form.cleaned_data['east'])
             west = float(form.cleaned_data['west'])

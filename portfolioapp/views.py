@@ -778,8 +778,8 @@ def render_plot(request):
             west = float(form.cleaned_data['west'])
             api_key = os.environ.get('TOPO_API_key')
 
-            # pcloud = demplot(south, north, east, west, api_key)
-            pcloud = demplot()
+            pcloud = demplot(south, north, east, west, api_key)
+            # pcloud = demplot()
             context = {'pcloud': pcloud}
         else:
             print("Failed to fetch data:", response.status_code)

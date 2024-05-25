@@ -107,6 +107,7 @@ import json
 #     return pcloud
 
 def demplot(south, north, east, west, api_key):
+    print(f"API Key: {api_key}")
     print(f"Starting demplot with bounds: south={south}, north={north}, east={east}, west={west}")
     url = f'https://portal.opentopography.org/API/globaldem?demtype=SRTMGL3&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff&API_Key={api_key}'
     print(f"Requesting data from URL: {url}")

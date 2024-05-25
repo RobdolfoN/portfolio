@@ -777,6 +777,7 @@ def render_plot(request):
             east = float(form.cleaned_data['east'])
             west = float(form.cleaned_data['west'])
             api_key = os.environ.get('TOPO_API_key')
+            print(f"API Key: {api_key}")
 
             pcloud = demplot(south, north, east, west, api_key)
             # pcloud = demplot()

@@ -16,5 +16,6 @@ urlpatterns = [
     path('pages/dem.html', views.dem, name='dem'),
     # path('generate-plot-data/', views.generate_plot_data, name='generate_plot_data'),
     path('pages/partials/plot.html', views.render_plot, name='render_plot'),
+    path('pages/youtube.html', views.youtube_stats_view, name='youtube'),    
 
 ]

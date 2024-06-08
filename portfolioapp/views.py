@@ -15,6 +15,9 @@ import os
 import tempfile
 import json
 from .dataManagement import *
+from datetime import datetime
+import threading
+from django.core.management import call_command
 # from django.contrib.gis.geos import Polygon
 
 
@@ -788,3 +791,69 @@ def render_plot(request):
 
     
     return render(request, 'portfolioapp/pages/partials/plot.html', context)
+
+API_KEY = 'AIzaSyD1BUoR4rRhZAD124UQGamo5juqybwVBWo'
+CHANNEL_HANDLE = 'easportsfc'
+
+def get_channel_id(api_key, handle):
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q={handle}&key={api_key}"
+    response = requests.get(url)
+    response.raise_for_status()
+    data = response.json()
+    print("Channel Search API Response:", data)  # Debugging line
+    if 'items' in data and data['items']:
+        return data['items'][0]['snippet']['channelId']
+    else:
+        return None
+
+def get_live_streams(api_key, channel_id):
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&type=video&eventType=live&key={api_key}"
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
+
+def youtube_stats_view(request):
+    channel_id = get_channel_id(API_KEY, CHANNEL_HANDLE)
+    if not channel_id:
+        return render(request, 'portfolioapp/pages/youtube.html', {'error': 'Channel not found'})
+
+    live_streams = get_live_streams(API_KEY, channel_id)
+
+    # Extract data for visualization
+    video_data = []
+
+    for item in live_streams.get('items', []):
+        video_id = item['id']['videoId']
+        video_title = item['snippet']['title']
+        published_at = item['snippet']['publishedAt']
+        # Fetch live stream details for viewer counts
+        video_details_url = f"https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails,statistics&id={video_id}&key={API_KEY}"
+        video_details_response = requests.get(video_details_url)
+        video_details_response.raise_for_status()
+        video_details = video_details_response.json()
+        if 'items' in video_details:
+            views = int(video_details['items'][0]['statistics'].get('viewCount', 0))
+            video_data.append({
+                'title': video_title,
+                'views': views,
+                'published_at': published_at,
+                'video_id': video_id
+            })
+
+    # Sort the video data by number of views in descending order and take the top 10
+    sorted_video_data = sorted(video_data, key=lambda x: x['views'], reverse=True)[:10]
+    print(sorted_video_data)
+
+    # # Create a bar chart
+    # fig = go.Figure(data=[
+    #     go.Bar(name='Live Streams', x=[video['title'] for video in sorted_video_data], y=[video['views'] for video in sorted_video_data])
+    # ])
+
+    # # Update the layout
+    # fig.update_layout(title='Top 10 Live Stream Viewer Counts',
+    #                   xaxis_title='Video Titles',
+    #                   yaxis_title='Viewer Counts')
+
+    # plot_div = fig.to_html(full_html=False)
+    # context={'plot_div': plot_div,}
+    return render(request, 'portfolioapp/pages/youtube.html')
